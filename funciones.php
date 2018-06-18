@@ -6,9 +6,7 @@
         foreach($datos as $key => $value){
             $datos[$key] = trim($value);
         }
-
         //ahora podemos empezar a usar cada valor del array que entre como parametro
-
         //el array de errores vacio que vamos a ir llenando
         $errores = [];
 
@@ -89,7 +87,6 @@
     }
 
     function traeTodaLaBase(){
-
         //le asignamos a $contenido, TODO lo que tiene mi base de datos
         $contenido = file_get_contents('usuarios.json');
 
@@ -109,7 +106,6 @@
 
         //"returname" un array que pueda usar en PHP
         return $usuariosTraidos;
-
     }
 
     //para relacionar la imagen subida por el usuario, con su 
