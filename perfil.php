@@ -1,7 +1,7 @@
 <?php
   require_once 'funciones.php';
-  //buscamos el usuario logueado y generamos nuestro array
-  $usuario = buscamePorMail($_SESSION["email"]);
+  //buscamos el usuario logueado 
+  $usuario = buscarUsuario('email', $_SESSION["email"]);
   //necesitamos el id del mismo para generar el href de la img!
   $id = $usuario["id"];
   //generamos la direccion donde estaalojada la imagen

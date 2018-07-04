@@ -1,6 +1,9 @@
 <?php
 
 	require_once 'funciones.php';
+
+	$errores = [];
+
 	//SI ME LLEGAN datos por post
 	if($_POST){
 		//llename este array $errores con lo que sea que devuelve
@@ -17,7 +20,7 @@
 			$errores = array_merge($errores, $erroresDeImagen);
 			if(count($errores) == 0){
 				//y usa esta funcion para guardarla en usuarios.json!
-				guardarUsuario($usuario);
+				guardarDato($usuario);
 				//ah y mandame a loguearme!
 				header('Location: login.php');
 				exit;
@@ -41,6 +44,20 @@
 			<header>
 				<h1> Registrate </h1>
 			</header>
+
+		<div class="flex-container" style="margin-top: 25px;">
+
+        <?php if($errores){ ?>
+            <div class="alert alert-danger">
+              <ul style="margin-top: 15px; margin-right: 35px;">
+                <?php foreach ($errores as $error) { ?>
+                  <li><?php echo $error ?></li>
+                <?php } ?>
+              </ul>
+            </div>
+          <?php  } ?>
+
+
 			<form class="formulario" action="registro.php" method="post" enctype="multipart/form-data">
 					<label>E-mail</label>
 					<input type="text" name="email">

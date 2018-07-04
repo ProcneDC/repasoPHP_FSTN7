@@ -1,13 +1,18 @@
 <?php
     require_once 'funciones.php';
+
+    //declaramos nuestro array de errores
+    $errores = [];
+
     if($_POST){
         //en el momento que tenemos datos en $_POST, armame un array $usuario
         //usando mi funcion que busca por mail, que pasa como parametro el email
         //que me llego por post.
-        $usuario = buscamePorMail($_POST["email"]);
-        
+        $usuario = buscarUsuario('email', $_POST["email"]);
+        //var_dump($usuario); exit;
         //acuerdense, buscamePorMail devuelve $usuario O NULL
         //entonces si $usuario NO ES NULL, entra al if
+        //var_dump($usuario);exit;
         if ($usuario !== null) {
             //ya que entraste al if, entra el if que sigue verificando la pass
             //que llego por post, CONTRA la que traje con buscamePorMail
@@ -16,11 +21,12 @@
                 login($usuario);
             }
         }
+            //adicionalmente, si el controlador de login da true, nos envia a nuestro perfil
+        if (controlarLogin()) {
+            header('Location: perfil.php');
+        }
     }
-    //adicionalmente, si el controlador de login da true, nos envia a nuestro perfil
-    if (controlarLogin()) {
-        header('Location: perfil.php');
-    }
+
 ?>
 <!doctype html>
 <html lang="en">
